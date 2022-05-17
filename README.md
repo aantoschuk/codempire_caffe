@@ -3,23 +3,25 @@
 <p align="center">
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="80" alt="TypeScript icon" />
 <img src="https://docs.nestjs.com/assets/logo-small.svg" width="85" alt="Nestjs icon"/>
-<img src="https://upload.wikimedia.org/wikipedia/ru/d/d3/Mysql.png" width="100" alt="MySQL icon"/>
+<img src="https://en.wikipedia.org/wiki/PostgreSQL#/media/File:Postgresql_elephant.svg" width="100" alt="Postgres icon"/>
 <img src="https://avatars.githubusercontent.com/u/20165699?s=200&v=4" width="80" alt="TypeORM icon"/>
 </p>
 
 - [com.hearst.auto_paginate](#comhearstauto_paginate)
-
   - [Api parts](#api-parts)
-  - [TODO](#todo)
+  - [todo](#todo)
+  - [error](#errors)
+    - [keepConectionAlive](#keepconectionalive)
 
 ## Api parts
 
-- [Preset](documentation/preset.md)
-- [Features](documentation/features.md)
-- [Templates](documentation/templates.md)
+## todo
 
-## TODO
+- Зробити різні сторінки документіції о проекті
+- імплементувати crud для acl модуля
 
-- Write Documentation
-- Production user table is not in use, 'cause of different pass encryption, after resolving this use kfs table and data
-- Improve documentation project structure by splitting content: documents / other files
+## Errors
+
+### keepConectionALive
+
+В сетінгу бази данних е опція `keepConnectionAlive`, якщо вимкнути, то міграції можуть викидувати помилку, щодо підключення під назвою default, а саме що не можу створити, воно вже існує
