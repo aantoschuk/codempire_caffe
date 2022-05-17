@@ -7,7 +7,7 @@ export class ACLController {
   constructor(private readonly aclService: ACLService) { }
 
   @Get()
-  public getHello(): string {
+  getHello(): string {
     return this.aclService.getHello();
   }
 }

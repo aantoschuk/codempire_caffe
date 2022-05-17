@@ -9,5 +9,6 @@ export const config = () => ({
     database: process.env.DB_NAME,
     entities: ['dist/**/*.entity.js'],
     synchronize: false,
+    keepConnectionAlive: true
   },
 });
