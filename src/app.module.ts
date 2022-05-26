@@ -2,12 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { ACLModule } from './acl/acl.module';
-import { DatabaseConfig } from './config/database';
+import { UserModule } from './modules/user/user.module';
+
 import { config } from './constants/config';
+import { DatabaseConfig } from './config/database';
 
 @Module({
-  imports: [ACLModule, ConfigModule.forRoot({
+  imports: [UserModule, ConfigModule.forRoot({
     isGlobal: true,
     load: [config]
   }),
