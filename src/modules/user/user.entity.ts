@@ -1,14 +1,10 @@
-import * as bcrypt from 'bcrypt';
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 import { ROLES } from 'src/constants/roles';
 
 @Entity('user')
 export class UserEntity {
-
-
-
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
@@ -20,15 +16,10 @@ export class UserEntity {
   @Column({
     type: 'varchar',
     nullable: false,
-    unique: true
+    unique: true,
   })
   email: string;
 
-  @BeforeInsert()
-  async hashPassword() {
-    const salt = 10;
-    this.password = await bcrypt.hash(this.password, salt);
-  }
   @Column({
     type: 'varchar',
     nullable: false,
@@ -53,6 +44,4 @@ export class UserEntity {
     nullable: true,
   })
   phone: number;
-
-
 }
