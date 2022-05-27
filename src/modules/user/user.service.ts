@@ -21,7 +21,12 @@ export class UserService {
     return users;
   }
 
+  async single(email: string) {
+    const user = await this.userRepository.findOne({ email });
+    return user;
+  }
+
   async delete(id: string) {
-    return await this.userRepository.delete(id)
+    return await this.userRepository.delete(id);
   }
 }
