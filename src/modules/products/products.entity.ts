@@ -1,47 +1,44 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Role } from 'src/constants/roles';
-
-@Entity('user')
-export class UserEntity {
+@Entity('product')
+export class ProductEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  full_name: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: false,
     unique: true,
+    type: 'varchar',
+    nullable: false,
   })
-  email: string;
+  name: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  password: string;
+  type: string;
 
   @Column({
     type: 'varchar',
-    nullable: true,
+    nullable: false,
   })
-  avatar: string;
-
-  @Column({
-    type: 'enum',
-    enum: Role,
-    default: Role.manager,
-  })
-  role: Role;
+  image: string;
 
   @Column({
     type: 'varchar',
+    array: true,
+    default: [''],
     nullable: true,
   })
-  phone: number;
+  allergenes: string[];
+
+  @Column({
+    nullable: false,
+  })
+  weight: number;
+
+  @Column({
+    nullable: false,
+  })
+  price: number;
 }

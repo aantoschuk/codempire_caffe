@@ -12,8 +12,6 @@ import { UserService } from './user.service';
 
 import { JwtAuthGuard } from '../guards/jwt.guard';
 
-import { CreateUserDTO } from './dto/create_user.dto';
-
 @UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
@@ -28,11 +26,6 @@ export class UserController {
   @Get('/:email')
   async single(@Param('email') email: string) {
     return await this.userService.single(email);
-  }
-
-  @Post('/')
-  async create(@Body() user: CreateUserDTO) {
-    return await this.userService.create(user);
   }
 
   @Delete('/:id')
