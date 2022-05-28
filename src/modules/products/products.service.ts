@@ -1,6 +1,11 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 
 import { ProductEntity } from './products.entity';
 
@@ -15,6 +20,10 @@ export class ProductService {
   ) { }
 
   async create(body: CreateProductDTO) {
+    const product = await this.productRepository.find({ name: body.name });
+    if (product) {
+      throw new HttpException('Product already exist', HttpStatus.CONFLICT);
+    }
     return await this.productRepository.save(body);
   }
 
@@ -23,7 +32,11 @@ export class ProductService {
   }
 
   async single(id: string) {
-    return await this.productRepository.findOne(id);
+    const product = await this.productRepository.findOne(id);
+    if (!product) {
+      throw new NotFoundException();
+    }
+    return product;
   }
 
   async update(id: string, body: UpdateProductDto) {

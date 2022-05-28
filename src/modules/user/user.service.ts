@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { UserEntity } from './user.entity';
@@ -16,6 +16,10 @@ export class UserService {
   async create(body: CreateUserDTO) {
     const salt = 10;
     const hash = await bcrypt.hash(body.password, salt);
+    const user = await this.userRepository.find({ email: body.email });
+    if (user) {
+      throw new HttpException('User already exist', HttpStatus.CONFLICT);
+    }
     return await this.userRepository.save({ ...body, password: hash });
   }
 
