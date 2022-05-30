@@ -1,5 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { UserService } from '../user/user.service';
 
@@ -21,8 +22,8 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const user = await this.userService.single(email);
-
-    if (user && user.password === password) {
+    const comparsion = await bcrypt.compare(password, user.password);
+    if (user && comparsion) {
       const { password, ...result } = user;
       return result;
     }
