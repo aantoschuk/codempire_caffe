@@ -20,7 +20,7 @@ export class ProductService {
   ) { }
 
   async create(body: CreateProductDTO) {
-    const product = await this.productRepository.find({ name: body.name });
+    const product = await this.productRepository.findOne({ name: body.name });
     if (product) {
       throw new HttpException('Product already exist', HttpStatus.CONFLICT);
     }
