@@ -26,6 +26,13 @@ export class ProductEntity {
 
   @Column({
     type: 'varchar',
+    nullable: false,
+    default: 'Some Text About Product',
+  })
+  description: string;
+
+  @Column({
+    type: 'varchar',
     array: true,
     default: [''],
     nullable: true,

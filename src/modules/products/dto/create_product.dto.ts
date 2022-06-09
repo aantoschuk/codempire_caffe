@@ -12,6 +12,9 @@ export class CreateProductDTO {
   @IsNotEmpty()
   image: string;
 
+  @IsNotEmpty()
+  description: string;
+
   allergenes: string[];
 
   @IsNotEmpty()
