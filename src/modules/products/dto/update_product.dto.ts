@@ -11,6 +11,8 @@ export class UpdateProductDto {
 
   allergenes: string[];
 
+  description: string;
+
   weight: number;
 
   price: number;
