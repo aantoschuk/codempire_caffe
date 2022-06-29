@@ -11,7 +11,7 @@ export class UserEntity {
     type: 'varchar',
     nullable: false,
   })
-  full_name: string;
+  full_name?: string;
 
   @Column({
     type: 'varchar',
@@ -30,7 +30,7 @@ export class UserEntity {
     type: 'varchar',
     nullable: true,
   })
-  avatar: string;
+  avatar?: string;
 
   @Column({
     type: 'enum',
@@ -43,5 +43,5 @@ export class UserEntity {
     type: 'varchar',
     nullable: true,
   })
-  phone: number;
+  phone?: number;
 }
