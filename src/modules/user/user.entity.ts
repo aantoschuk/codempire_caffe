@@ -9,7 +9,7 @@ export class UserEntity {
 
   @Column({
     type: 'varchar',
-    nullable: false,
+    nullable: true,
   })
   full_name?: string;
 
