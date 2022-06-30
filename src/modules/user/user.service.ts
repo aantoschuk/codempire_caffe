@@ -1,10 +1,16 @@
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { UserEntity } from './user.entity';
 import { CreateUserDTO } from './dto/create_user.dto';
+import { UpdateUserDTO } from './dto/update_user.dto';
 
 @Injectable()
 export class UserService {
@@ -27,6 +33,18 @@ export class UserService {
   async fetch() {
     const users = await this.userRepository.find();
     return users;
+  }
+
+  async update(id: string, body: UpdateUserDTO) {
+    const storedUser = await this.userRepository.findOne({ id });
+    if (!storedUser) {
+      throw new NotFoundException();
+    }
+    const updatedUser = await this.userRepository.update(
+      { id },
+      { ...storedUser, ...body },
+    );
+    return updatedUser;
   }
 
   async single(email: string) {
