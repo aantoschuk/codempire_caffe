@@ -35,13 +35,13 @@ export class UserService {
     return users;
   }
 
-  async update(id: string, body: UpdateUserDTO) {
-    const storedUser = await this.userRepository.findOne({ id });
+  async update(email: string, body: UpdateUserDTO) {
+    const storedUser = await this.userRepository.findOne({ email });
     if (!storedUser) {
       throw new NotFoundException();
     }
     const updatedUser = await this.userRepository.update(
-      { id },
+      { email },
       { ...storedUser, ...body },
     );
     return updatedUser;
