@@ -27,7 +27,12 @@ export class UserService {
     if (user) {
       throw new HttpException('User already exist', HttpStatus.CONFLICT);
     }
-    return await this.userRepository.save({ ...body, password: hash });
+
+    const savedUser = await this.userRepository.save({
+      ...body,
+      password: hash,
+    });
+    return { email: savedUser.email, id: savedUser.id, role: savedUser.role };
   }
 
   async fetch() {
