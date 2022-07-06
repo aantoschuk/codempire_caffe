@@ -33,8 +33,7 @@ export class UserEntity {
   avatar?: string;
 
   @Column({
-    type: 'enum',
-    enum: Role,
+    type: 'varchar',
     default: Role.manager,
   })
   role: Role;
