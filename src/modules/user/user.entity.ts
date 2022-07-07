@@ -34,7 +34,7 @@ export class UserEntity {
 
   @Column({
     type: 'varchar',
-    default: Role.manager,
+    default: Role.client,
   })
   role: Role;
 
